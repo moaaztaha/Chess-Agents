@@ -1,0 +1,4 @@
+chess==1.11.1
+autogen==0.7.0
+python-dotenv==1.0.1
+streamlit==1.41.1
