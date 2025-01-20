@@ -44,7 +44,7 @@ def make_move(
         board,
         arrows=[(move.from_square, move.to_square)],
         fill={move.from_square: "gray"},
-        size=200,
+        size=400,
     )
 
     with open("chessboard.svg", "w") as f:
@@ -66,8 +66,11 @@ def make_move(
     )
 
 
-@st.cache_resource
-def create_players():
+def create_players(key: str):
+    llm_config["api_key"] = key
+
+    st.write(key)
+
     # Player white agent
     player_white = ConversableAgent(
         name="player_white",

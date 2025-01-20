@@ -1,13 +1,24 @@
-import time
 import streamlit as st
 from utils import create_players
 from utils import board
 from utils import made_move
-import chess
+import os
 
 st.title("Chess AI Agents")
 
-player_white, player_black, board_proxy = create_players()
+with st.sidebar:
+    st.header("Configs")
+    key = st.sidebar.text_input("ChatGPT Key")
+
+    st.text("Please config you Agentic Players")
+    n_turns = st.number_input("Number of Turns", min_value=1, max_value=5)
+    start = st.button("Start the game")
+
+if "board" not in st.session_state:
+    st.session_state.board = "chessboard_default.svg"
+
+board_image = st.empty()
+board_image.image(st.session_state.board, width=400)
 
 
 def player_black_move():
@@ -34,24 +45,16 @@ def player_white_move():
             st.markdown(message["content"])
 
 
-with st.sidebar:
-    st.header("Configs")
-    st.text("Please config you Agentic Players")
-    n_turns = st.number_input("Number of Turns", min_value=1, max_value=5)
-    start = st.button("Start the game")
+if key:
+    # Creating players
+    player_white, player_black, board_proxy = create_players(key)
 
+    if start:
+        for i in range(n_turns):
+            player_white_move()
+            board_image.image("chessboard.svg", width=400)
 
-if "board" not in st.session_state:
-    st.session_state.board = "chessboard_default.svg"
-
-board_image = st.empty()
-board_image.image(st.session_state.board)
-
-if start:
-    for i in range(n_turns):
-        time.sleep(2)
-        player_white_move()
-        board_image.image("chessboard.svg")
-        time.sleep(2)
-        player_black_move()
-        board_image.image("chessboard.svg")
+            player_black_move()
+            board_image.image("chessboard.svg", width=400)
+else:
+    st.error("Please input a valid ChatGPT API key!!")
