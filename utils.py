@@ -69,7 +69,6 @@ def make_move(
 def create_players(key: str):
     llm_config["api_key"] = key
 
-    st.write(key)
 
     # Player white agent
     player_white = ConversableAgent(

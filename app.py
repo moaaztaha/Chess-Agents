@@ -2,7 +2,6 @@ import streamlit as st
 from utils import create_players
 from utils import board
 from utils import made_move
-import os
 
 st.title("Chess AI Agents")
 
