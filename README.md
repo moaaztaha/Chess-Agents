@@ -1,6 +1,6 @@
 # Chess Playing Agents
 
-Multi-agents playing a chess game using [AG2](https://docs.ag2.ai/docs/Home) (Autogen formally) and Streamlit.
+Multi-agents playing a chess game using [AG2](https://docs.ag2.ai/docs/Home) (Autogen formally), Streamlit and ChatGPT.
 
 ![demo gif](demo.gif)
 
